@@ -1,24 +1,19 @@
-#ifndef LOGENTRY_H
-#define LOGENTRY_H
-
+//Evidencia 2
+//Rosendo Los Rios Moreno
+//A01198515
+#ifndef LOG_ENTRY_H
+#define LOG_ENTRY_H
 #include <string>
+using namespace std;
 
-class LogEntry {
-public:
-    LogEntry(const std::string& date, const std::string& time, const std::string& ip, const std::string& message);
-
-    friend bool operator<(const LogEntry& lhs, const LogEntry& rhs);
-
-    std::string getDate() const;
-    std::string getTime() const;
-    std::string getIP() const;
-    std::string getMessage() const;
-
-private:
-    std::string date_;
-    std::string time_;
-    std::string ip_;
-    std::string message_;
+// Definición de la estructura LogEntry para representar una entrada de registro
+struct LogEntry {
+    string month;   // Mes
+    int day;        // Día
+    int year;       // Año
+    string time;    // Hora
+    string ip;      // Dirección IP
+    string message; // Mensaje
 };
 
-#endif // LOGENTRY_H
+#endif // LOG_ENTRY_H
