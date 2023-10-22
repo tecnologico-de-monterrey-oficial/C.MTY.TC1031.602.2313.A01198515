@@ -1,31 +1,31 @@
-#pragma once
+#pragma once 
 
-template <class T>
-struct Node {
+template<class T>
+struct TNode {
     T data;
-    Node<T>* right;
-    Node<T>* left;
-    Node();
-    Node(T data);
-    Node(T data, Node<T>* right, Node<T>* left);
+    TNode<T>* left;
+    TNode<T>* right;
+    TNode();
+    TNode(T data);
+    TNode(T data, TNode<T>* left, TNode<T>* right);
 };
 
 template<class T>
-Node<T>::Node() {
+TNode<T>::TNode() {
+    left = nullptr;
     right = nullptr;
-    left= nullptr;
 }
 
 template<class T>
-Node<T>::Node(T data) {
+TNode<T>::TNode(T data) {
     this->data = data;
-    this->right = nullptr;
     this->left = nullptr;
+    this->right = nullptr;
 }
 
 template<class T>
-Node<T>::Node(T data, Node<T>* right, Node<T>* left) {
+TNode<T>::TNode(T data, TNode<T>* left, TNode<T>* right) {
     this->data = data;
+    this->left = left;
     this->right = right;
-    this->left= left;
 }
