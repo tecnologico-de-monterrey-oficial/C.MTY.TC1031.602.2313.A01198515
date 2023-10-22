@@ -9,65 +9,69 @@ int main() {
 
     while (true) {
         cout << "Binary Search Tree Menu" << endl;
-        cout << "1. Insert" << endl;
-        cout << "2. Delete" << endl;
-        cout << "3. Print" <<endl;
-        cout << "4. Find" <<endl;
-        cout << "5. Height" << endl;
-        cout << "6. Ancestors" << endl;
-        cout << "7. What Level Am I" << endl;
-        cout << "8. Exit" <<endl;
-        cout << "Enter your choice: ";
+        cout << "1. Insertar" << endl;
+        cout << "2. Eliminar numero" << endl;
+        cout << "3. Imprimir Arbol" <<endl;
+        cout << "4. Encontrar numero dentro del arbol" <<endl;
+        cout << "5. Altura" << endl;
+        cout << "6. Ancestros" << endl;
+        cout << "7. Que nivel estoy" << endl;
+        cout << "8. Salir del programa" <<endl;
+        cout << "Eleguir opicion: ";
         cin >> choice;
 
         switch (choice) {
             case 1:
-                cout << "Enter data to insert: ";
+                cout << "Indroducir datos: ";
                 cin >> data;
                 bst.insert(data);
                 break;
             case 2:
-                cout << "Enter data to delete: ";
+                cout << "Introduce dato a eliminar: ";
                 cin >> data;
-                // Add code to delete data from the tree
+                if (bst.remove(data)) {
+                  cout << "Dato eliminado exitosamente." << endl;
+                } else {
+                  cout << "Dato no encontrado en el árbol." << endl;
+                }
                 break;
             case 3:
                 cout << "Binary Search Tree:" << endl;
                 bst.print();
                 break;
             case 4:
-                cout << "Enter data to find: ";
+                cout << "introduccir datos a encontrar: ";
                 cin >> data;
                 if (bst.find(data)) {
-                    cout << "Data found in the tree." << endl;
+                    cout << "Dato encontrados en el arbol." << endl;
                 } else {
-                    cout << "Data not found in the tree." << endl;
+                    cout << "Dato no encontrado en el arbol." << endl;
                 }
                 break;
             case 5:
-                cout << "Height of the tree: " << bst.height() << endl;
+                cout << "Altura del arbol: " << bst.height() << endl;
                 break;
             case 6:
-                cout << "Enter data to find ancestors: ";
+                cout << "Inrtoduce un dato para enconntrar un antecesor: ";
                 cin >> data;
-                cout << "Ancestors of " << data << ": ";
+                cout << "Aencestro de:" << data << ": ";
                 bst.ancestors(data);
                 break;
             case 7:
-                cout << "Enter data to find its level: ";
+                cout << "Introduce un dato para encontrar su nivel: ";
                 cin >> data;
                 level = bst.whatLevelAmI(data); // Asigna el valor a level
                 if (level != -1) {
-                    cout << "Data is at level " << level << endl;
+                    cout << "El dato se enuentra en el nivel " << level << endl;
                 } else {
-                    cout << "Data not found in the tree." << endl;
+                    cout << "El dato no se encuentra en el arbol" << endl;
                 }
                 break;
             case 8:
-                cout << "Exiting program." << endl;
+                cout << "Salir del programa ." << endl;
                 return 0;
             default:
-                cout << "Invalid choice. Please try again." << endl;
+                cout << "Eleccion invalida, intentar nuevamente." << endl;
         }
     }
 

@@ -12,6 +12,8 @@ private:
     int findHeight(TNode<T>* node);
     bool printAncestors(TNode<T>* node, T data);
     int findLevel(TNode<T>* node, T data, int level);
+    TNode<T>* findMin(TNode<T>* node);
+    bool removeNode(TNode<T>*& node, T data);
 
 public:
     BST();
@@ -24,7 +26,6 @@ public:
     void ancestors(T data);
     int whatLevelAmI(T data);
 };
-
 
 template <class T>
 BST<T>::BST() {
@@ -72,7 +73,7 @@ bool BST<T>::find(T data) {
 
 template <class T>
 bool BST<T>::remove(T data) {
-    // Implementa la eliminación aquí...
+    return removeNode(root, data);
 }
 
 template<class T>
@@ -95,7 +96,7 @@ void BST<T>::print() {
         printTree(root, level);
         std::cout << std::endl;
     } else {
-        std::cout << std::endl << "The BST is empty" << std::endl << std::endl;
+        std::cout << std::endl << " El BST está vacío" << std::endl << std::endl;
     }
 }
 
@@ -167,6 +168,42 @@ int BST<T>::findLevel(TNode<T>* node, T data, int level) {
         return leftLevel;
     }
     return rightLevel;
+}
+
+template <class T>
+TNode<T>* BST<T>::findMin(TNode<T>* node) {
+    while (node->left != nullptr) {
+        node = node->left;
+    }
+    return node;
+}
+
+template <class T>
+bool BST<T>::removeNode(TNode<T>*& node, T data) {
+    if (node == nullptr) {
+        return false;
+    }
+
+    if (data < node->data) {
+        return removeNode(node->left, data);
+    } else if (data > node->data) {
+        return removeNode(node->right, data);
+    } else {
+        if (node->left == nullptr) {
+            TNode<T>* temp = node->right;
+            delete node;
+            node = temp;
+        } else if (node->right == nullptr) {
+            TNode<T>* temp = node->left;
+            delete node;
+            node = temp;
+        } else {
+            TNode<T>* temp = findMin(node->right);
+            node->data = temp->data;
+            removeNode(node->right, temp->data);
+        }
+        return true;
+    }
 }
 
 #endif /* BST_h */
